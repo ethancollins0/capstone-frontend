@@ -3,9 +3,9 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-
+    BASE_URL: 'https://capstone-node-backend.herokuapp.com'
   },
   mutations: {
 
@@ -14,3 +14,5 @@ export default new Vuex.Store({
 
   }
 })
+
+export default store

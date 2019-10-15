@@ -1,25 +1,56 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Login from './views/Login.vue'
+import store from './store'
 
 Vue.use(Router)
+
+function guard(to, from, next){
+  window.localStorage.setItem('token', 'Bearer temp')
+  if (window.localStorage.getItem('token')){
+    authenticateUser(to, from, next)
+  } else {
+    next('/login')
+  }
+}
+ 
+function authenticateUser(to, from, next){
+  let url = store.state.BASE_URL
+  fetch(url + '/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${window.localStorage.getItem('token')}`
+    },
+  }).then(res => res.json())
+    .then((res) => {if (res.name && res.email){
+      next()
+    } else {
+      window.localStorage.removeItem('token')
+      next('/login')
+    }
+  })
+}
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
+      beforeEnter: guard,
+      path: '/home',
       name: 'home',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '*', 
+      redirect: '/login'
     }
   ]
 })

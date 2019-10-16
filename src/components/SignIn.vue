@@ -15,19 +15,19 @@
                     </div>
                 </div>
             </div>
-            <form class='sign-up'>
+            <form class='sign-up' @submit="handleSubmit">
                 <h2>Create Login</h2>
                 <div>Use Your Email For Registration</div>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="Name" name='name' required/>
+                <input type="email" placeholder="Email" name='email' required/>
+                <input type="password" placeholder="Password" name='password' required/>
                 <button>Sign Up</button>
             </form>
-            <form class='sign-in'>
+            <form class='sign-in' @submit="handleSubmit">
                 <h2>Sign In</h2>
                 <div>Use Your Email To Sign In</div>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input type="email" placeholder="Email" name='email' required/>
+                <input type="password" placeholder="Password" name='password' required/>
                 <button>Sign In</button>
             </form>
         </div>
@@ -40,6 +40,51 @@
         data: () => {
             return {
                 signUp: false
+            }
+        },
+        methods: {
+            handleSubmit(event){
+                event.preventDefault()
+                if (Array.from(event.target.classList).includes('sign-up')){
+                    const {name, email, password} = event.target
+                    console.log(name.value, email.value, password.value)
+                } else {
+                    const {email, password} = event.target
+                    this.handleLogin(email.value, password.value)
+                }
+            },
+            computed: {
+                base_url(){
+                    return this.$store.state.BASE_URL
+                } 
+            },
+            handleLogin(email, password) {
+                fetch(this.base_url + '/login', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email, password
+                    })
+                }).then(res => res.json())
+                .then(console.log)
+                window.localStorage.setItem('token', 'Bearer token')
+                this.$router.push('/home')
+            },
+            handleSignup(name, email, password){
+                fetch(this.base_url + '/signup', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user: {name, email, password}
+                    })
+                }).then(res => res.json())
+                .then(console.log)
+                window.localStorage.setItem('token', 'Bearer token')
+                this.$router.push('/home')
             }
         }
     }

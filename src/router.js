@@ -7,7 +7,6 @@ import store from './store'
 Vue.use(Router)
 
 function guard(to, from, next){
-  window.localStorage.setItem('token', 'Bearer temp')
   if (window.localStorage.getItem('token')){
     authenticateUser(to, from, next)
   } else {
@@ -17,11 +16,11 @@ function guard(to, from, next){
  
 function authenticateUser(to, from, next){
   let url = store.state.BASE_URL
-  fetch(url + '/login', {
+  fetch(url + '/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${window.localStorage.getItem('token')}`
+      'Authorization': `Bearer ${window.localStorage.getItem('token')}`
     },
   }).then(res => res.json())
     .then((res) => {if (res.name && res.email){

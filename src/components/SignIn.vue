@@ -36,6 +36,8 @@
 
 
 <script>
+    import router from '../router'
+
     export default {
         data: () => {
             return {
@@ -47,20 +49,15 @@
                 event.preventDefault()
                 if (Array.from(event.target.classList).includes('sign-up')){
                     const {name, email, password} = event.target
-                    console.log(name.value, email.value, password.value)
+                    this.handleSignup(name.value, email.value, password.value)
                 } else {
                     const {email, password} = event.target
                     this.handleLogin(email.value, password.value)
                 }
             },
-            computed: {
-                base_url(){
-                    return this.$store.state.BASE_URL
-                } 
-            },
             handleLogin(email, password) {
-                fetch(this.base_url + '/login', {
-                    method: 'post',
+                fetch(this.$store.state.BASE_URL + '/login', {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -68,23 +65,40 @@
                         email, password
                     })
                 }).then(res => res.json())
-                .then(console.log)
-                window.localStorage.setItem('token', 'Bearer token')
-                this.$router.push('/home')
+                .then(res => {
+                    if (res){
+                        window.localStorage.setItem('token', res)
+                        this.login()
+                    } else {
+                        console.log('email exists or internal error')
+                    }
+                })
+                // window.localStorage.setItem('token', 'Bearer token')
+                // this.$router.push('/home')
             },
             handleSignup(name, email, password){
-                fetch(this.base_url + '/signup', {
+                fetch(this.$store.state.BASE_URL + '/signup', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        user: {name, email, password}
+                        name, email, password
                     })
                 }).then(res => res.json())
-                .then(console.log)
-                window.localStorage.setItem('token', 'Bearer token')
-                this.$router.push('/home')
+                .then(res => {
+                    if (res){  //on success
+                        window.localStorage.setItem('token', res)
+                        this.login()
+                    } else {  //on fail
+                        console.log('email exists or internal error')
+                    }
+                })
+                // window.localStorage.setItem('token', 'Bearer token')
+                // this.$router.push('/home')
+            },
+            login(){
+                router.push('/home')
             }
         }
     }

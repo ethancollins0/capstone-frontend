@@ -17,13 +17,18 @@ function validateToken(){
   }).then(res => res.json())
     .then((res) => {
       if (res && res.user_id && res.email && res.name){
-        setUser(user_id)
+        setUser(res.name)
         return res
       } else {
         window.localStorage.removeItem('token')
         return false
       }
   })
+}
+
+function setUser(name){
+  console.log(name)
+  //dispatch mutation to store
 }
 
 function guard(to, from, next){
@@ -38,7 +43,6 @@ function guardHome(to, from, next){
   if (window.localStorage.getItem('token')){
     validateToken()
       .then(res => {
-        console.log('here', res)
         res ? next() : next('/login')
       })
   } else {

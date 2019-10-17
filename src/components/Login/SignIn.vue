@@ -54,6 +54,7 @@ export default {
                 }
             },
             handleLogin(email, password) {
+                console.log('inside handleLogin', email, password, this.$store.state.BASE_URL)
                 fetch(this.$store.state.BASE_URL + '/login', {
                     method: 'POST',
                     headers: {
@@ -64,7 +65,7 @@ export default {
                     })
                 }).then(res => res.json())
                 .then(res => {
-                    console.log(res)
+                    console.log('response from login was' + `${res}`)
                     if (res){
                         window.localStorage.setItem('token', res)
                         this.login()
@@ -96,6 +97,7 @@ export default {
                 // this.$router.push('/home')
             },
             login(){
+                console.log('reached the login redirect')
                 this.$router.push('home')
             }
         }

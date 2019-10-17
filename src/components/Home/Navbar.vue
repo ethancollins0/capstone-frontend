@@ -4,7 +4,7 @@
             <img src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Welcome, {{this.}}</h1>
+            <h1>Welcome, {{this.name}}</h1>
         </div>
         <div class='social'>
             <div class='linkedin'>

@@ -16,6 +16,7 @@ function validateToken(){
     },
   }).then(res => res.json())
     .then((res) => {
+      console.log(res)
       if (res && res.user_id && res.email && res.name){
         setUser(res.name)
         return res

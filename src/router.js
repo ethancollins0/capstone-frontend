@@ -16,7 +16,6 @@ function validateToken(){
     },
   }).then(res => res.json())
     .then((res) => {
-      console.log(res)
       if (res && res.user_id && res.email && res.name){
         store.commit('setName', res.name)
         return res
@@ -47,7 +46,6 @@ function guardHome(to, from, next){
 }
 
 function guardLogin(to, from, next){
-  console.log('here', 'guard login')
   if (window.localStorage.getItem('token')){
     validateToken()
       .then(res => {

@@ -6,30 +6,56 @@ import store from './store'
 
 Vue.use(Router)
 
-function guard(to, from, next){
-  if (window.localStorage.getItem('token')){
-    authenticateUser(to, from, next)
-  } else {
-    next('/login')
-  }
-}
- 
-function authenticateUser(to, from, next){
+function validateToken(){
   let url = store.state.BASE_URL
-  fetch(url + '/token', {
+  return fetch(url + '/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${window.localStorage.getItem('token')}`
     },
   }).then(res => res.json())
-    .then((res) => {if (res.name && res.email){
-      next()
-    } else {
-      window.localStorage.removeItem('token')
-      next('/login')
-    }
+    .then((res) => {
+      if (res && res.user_id && res.email && res.name){
+        setUser(user_id)
+        return res
+      } else {
+        window.localStorage.removeItem('token')
+        return false
+      }
   })
+}
+
+function guard(to, from, next){
+  if (to.path == '/home'){
+    guardHome(to, from, next)
+  } else if (to.path == '/login'){
+    guardLogin(to, from, next)
+  }
+}
+
+function guardHome(to, from, next){
+  if (window.localStorage.getItem('token')){
+    validateToken()
+      .then(res => {
+        console.log('here', res)
+        res ? next() : next('/login')
+      })
+  } else {
+    next('/login')
+  }
+}
+
+function guardLogin(to, from, next){
+  console.log('here', 'guard login')
+  if (window.localStorage.getItem('token')){
+    validateToken()
+      .then(res => {
+        res ? next('/home') : next()
+      })
+  } else {
+    next()
+  }
 }
 
 export default new Router({
@@ -38,14 +64,15 @@ export default new Router({
   routes: [
     {
       beforeEnter: guard,
-      path: '/home',
-      name: 'home',
-      component: Home
-    },
-    {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      beforeEnter: guard,
+      path: '/home',
+      name: 'home',
+      component: Home
     },
     {
       path: '*', 

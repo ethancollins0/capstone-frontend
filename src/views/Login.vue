@@ -6,7 +6,7 @@
 
 
 <script>
-    import SignIn from '../components/SignIn'
+    import SignIn from '../components/Login/SignIn'
     export default {
         components: {
             SignIn

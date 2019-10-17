@@ -36,9 +36,7 @@
 
 
 <script>
-    import router from '../router'
-
-    export default {
+export default {
         data: () => {
             return {
                 signUp: false
@@ -66,11 +64,12 @@
                     })
                 }).then(res => res.json())
                 .then(res => {
+                    console.log(res)
                     if (res){
                         window.localStorage.setItem('token', res)
                         this.login()
                     } else {
-                        console.log('email exists or internal error')
+                        console.log('failed to login')
                     }
                 })
                 // window.localStorage.setItem('token', 'Bearer token')
@@ -89,7 +88,6 @@
                 .then(res => {
                     if (res){  //on success
                         window.localStorage.setItem('token', res)
-                        this.login()
                     } else {  //on fail
                         console.log('email exists or internal error')
                     }
@@ -98,7 +96,7 @@
                 // this.$router.push('/home')
             },
             login(){
-                router.push('/home')
+                this.$router.push('home')
             }
         }
     }

@@ -7,11 +7,13 @@ const store = new Vuex.Store({
   state: {
     BASE_URL: 'https://capstone-node-backend.herokuapp.com',
     // BASE_URL: 'http://localhost:3002',
-    name: 'Test',
+    name: '_________',
     piArray: []
   },
   mutations: {
-
+    setName(state, name){
+      state.name = name
+    }
   },
   actions: {
 

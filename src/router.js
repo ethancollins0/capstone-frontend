@@ -18,18 +18,13 @@ function validateToken(){
     .then((res) => {
       console.log(res)
       if (res && res.user_id && res.email && res.name){
-        setUser(res.name)
+        store.commit('setName', res.name)
         return res
       } else {
         window.localStorage.removeItem('token')
         return false
       }
   })
-}
-
-function setUser(name){
-  console.log(name)
-  //dispatch mutation to store
 }
 
 function guard(to, from, next){

@@ -28,7 +28,8 @@
                     })
                 }).then(res => res.json())
                 .then((res) => {
-                    typeof res == 'number' ? this.$router.history.push('/home') : console.log('failed')
+                    console.log(res)
+                    typeof res == 'string' ? this.$router.history.push('/home') : console.log('failed')
                 })
             },
             openSocial (name){

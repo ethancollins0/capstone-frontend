@@ -2,7 +2,7 @@
     <div class='system'>
         <div class='text-container'><p>{{ system.name }}</p></div>
         <div class='text-container'><p>{{ system.model }}</p></div>
-        <div class='text-container'><button>Offline</button></div>
+        <div class='text-container'><button>{{this.status}}</button></div>
     </div>
 </template>
 
@@ -17,17 +17,28 @@
         data(){
             return {
                 socket: {},
+                status: 'offline'
             }
         },
         created(){
-            this.socket = io()
-        },
-        mounted(){
-            this.socket.on('data', data => {
-                console.log(data)
+            this.socket = io(this.$store.state.BASE_URL, {
+                query: {
+                    pi_id: this.system.id,
+                    token: `${window.localStorage.getItem('token')}`
+                }
             })
         },
+        mounted(){
+                  this.socket.on('data', data => {
+                      console.log(data)
+                  })
+                  this.socket.on('online', () => {
+                      this.status = 'online'
+                  })
+        }
+              
     }
+    
 </script>
 
 <style lang='scss'>

@@ -20,7 +20,7 @@
             }
         },
         created(){
-            this.socket = io(this.$store.state.SOCKET_URL, {query: `id=${this.system.id}"`})
+            this.socket = io()
         },
         mounted(){
             this.socket.on('data', data => {

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import store from './store'
+import Pi from './views/Pi.vue'
 
 Vue.use(Router)
 
@@ -16,8 +17,10 @@ function validateToken(){
     },
   }).then(res => res.json())
     .then((res) => {
-      if (res && res.user_id && res.email && res.name){
-        store.commit('setName', res.name)
+      let user = res.user
+      if (res && user.user_id && user.email && user.name){
+        store.commit('setName', user.name)
+        store.commit('setSystems', res.systems)
         return res
       } else {
         window.localStorage.removeItem('token')
@@ -27,7 +30,7 @@ function validateToken(){
 }
 
 function guard(to, from, next){
-  if (to.path == '/home'){
+  if (to.path == '/home' || to.path == '/pi'){
     guardHome(to, from, next)
   } else if (to.path == '/login'){
     guardLogin(to, from, next)
@@ -38,11 +41,14 @@ function guardHome(to, from, next){
   if (window.localStorage.getItem('token')){
     validateToken()
       .then(res => {
-        res ? next() : next('/login')
+        res 
+          ? next()
+          : next('/login')
       })
   } else {
     next('/login')
   }
+  next()
 }
 
 function guardLogin(to, from, next){
@@ -71,6 +77,12 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      beforeEnter: guard,
+      path: '/pi',
+      name: 'pi',
+      component: Pi
     },
     {
       path: '*', 

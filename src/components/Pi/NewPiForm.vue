@@ -1,7 +1,7 @@
 <template>
     <div class='new-pi-form'>
         <form @submit="handleSubmit" class='pi-form'>
-            <p>Add a New Pi</p>
+            <h2>Add a New Pi</h2>
             <input type='text' @change="handleChange" name='name' placeholder="name" maxlength='30' required/>
             <textarea type='text' @change="handleChange" name='description' placeholder="short description" maxlength='80' required/>
             <div class='form-bottom'>
@@ -46,6 +46,7 @@
 
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
     .new-pi-form {
         display: flex;
         justify-content: center;
@@ -53,6 +54,14 @@
         min-height: 300px;
 
         .pi-form {
+            h2 {
+                text-align: center;
+                font-family: 'Playfair Display', serif;
+                padding-bottom: 10px;
+                width: 80%;
+                border-bottom: 1px solid black;
+            }
+
             background: linear-gradient(to bottom, #ebedee, #fdfbfb);
             height: max-content;
             min-height: 300px;
@@ -94,7 +103,6 @@
 
 
             select {
-                width: 80%;
                 margin-bottom: 10px;
             }
 
@@ -105,7 +113,7 @@
                 justify-content: space-evenly;
 
                 .form-style {
-                    width: 45%;
+                    width: 30%;
                     height: 30px;
                     background-color: #ffffff;
 

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <Navbar v-on:opensocial="openSocial" />
-    <div class='home-form'>
-      <NewPiForm v-on:addpi="addPi" />
+    <div>
+      <Systems />
     </div>
   </div>
 </template>
@@ -10,29 +10,15 @@
 <script>
 
 import Navbar from '../components/Home/Navbar'
-import NewPiForm from '../components/Home/NewPiForm'
+import Systems from '@/components/Home/Systems'
 
 export default {
   name: 'home',
   components: {
     Navbar,
-    NewPiForm
+    Systems
   },
   methods: {
-    addPi (event) {
-      const {description, name, selected} = this.$store.state.form
-      fetch(this.$store.state.BASE_URL + '/pi', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${window.localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({
-          name, description, selected
-        })
-      }).then(res => res.json())
-      .then(console.log)
-    },
     openSocial (name){
       const social = {
         linkedin: 'https://www.linkedin.com/in/ethan-t-collins/',
@@ -41,19 +27,9 @@ export default {
       }
       window.open(social[name], '_blank')
     }
-  },
-  mounted () {
-    
   }
 }
 </script>
 
 <style lang="scss">
-  .home {
-    .home-form {
-      display: flex;
-      justify-content: center;
-      padding-top: 10%;
-    }
-  }
 </style>

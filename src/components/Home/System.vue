@@ -35,6 +35,9 @@
                   this.socket.on('online', () => {
                       this.status = 'online'
                   })
+                  this.socket.on('works', () => {
+                      console.log('client connected')
+                  })
         }
               
     }
@@ -49,8 +52,8 @@
                 min-height: 50px;
                 width: 100%;
                 height: max-content;
-                border: 1px solid red;
-                border-bottom: 0;
+                // border: 1px solid red;
+                border-bottom: 1px solid grey;
                 
                 display: flex;
                 flex-direction: row;

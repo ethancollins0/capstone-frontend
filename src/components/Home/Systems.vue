@@ -59,18 +59,19 @@
 
         .header-container {
             min-width: 400px;
-            border: 1px solid red;
+            border: 1px solid #eee;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             border-bottom: 0;
             background: lightgrey;
+            border: 1px solid grey;
             
             .text-container {
                 margin: 10px;
                 width: 33%;
                 text-align: left;
-                border: 1px solid black;
+                // border: 1px solid black;
                 height: max-content;
                 box-sizing: border-box;
             }

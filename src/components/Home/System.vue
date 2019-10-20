@@ -3,6 +3,8 @@
         <div class='text-container'><p>{{ system.name }}</p></div>
         <div class='text-container'><p>{{ system.model }}</p></div>
         <div class='text-container'><button>{{this.status}}</button></div>
+        <div class='text-container'><button>{{this.water}}</button></div>
+        <div class='text-container'><button>{{this.token}}</button></div>
     </div>
 </template>
 
@@ -17,7 +19,10 @@
         data(){
             return {
                 socket: {},
-                status: 'offline'
+                status: 'offline',
+                water: 'false',
+                token: '',
+                id: this.system.id
             }
         },
         created(){
@@ -29,6 +34,16 @@
             })
         },
         mounted(){
+            fetch(this.$store.state.BASE_URL + '/pi/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ pi_id: this.id })
+            }).then(res => res.json())
+              .then(token => this.token = token)
+
                   this.socket.on('data', data => {
                       console.log(data)
                   })
@@ -37,6 +52,17 @@
                   })
                   this.socket.on('works', () => {
                       console.log('client connected')
+                  })
+                  this.socket.on('length', data => {
+                      console.log(data)
+                  })
+                  this.socket.on('room_joined', data => {
+                      console.log(data)
+                  })
+                  this.socket.on('water', data => {
+                      data.water == false
+                        ? this.water = 'false'
+                        : this.water = 'true'
                   })
         }
               
@@ -65,7 +91,7 @@
                 .text-container {
                     display: flex;
                     margin: 10px;
-                    width: 33%;
+                    width: 20%;
                     text-align: left;
                     // border: 1px solid black;
                     height: 50px;
@@ -77,6 +103,9 @@
                         width: 80%;
                         height: 60%;
                         border-radius: 8px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
 
                     button:focus {

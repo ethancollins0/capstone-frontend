@@ -9,6 +9,8 @@
                     <div class='text-container'><h3>Name</h3></div>
                     <div class='text-container'><h3>Model</h3></div>
                     <div class='text-container'><h3>Status</h3></div>
+                    <div class='text-container'><h3>Needs Watering?</h3></div>
+                    <div class='text-container'><h3>Token</h3></div>
                 </div>
                 <div class='system-container' v-for="system in systems" v-bind:key="system.id">
                     <System :system="system" />

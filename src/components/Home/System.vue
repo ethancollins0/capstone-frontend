@@ -55,16 +55,23 @@
                   })
                   this.socket.on('length', data => {
                       console.log(data)
-                  })
-                  this.socket.on('room_joined', data => {
-                      console.log(data)
+                      if (data > 1){
+                          this.status = 'online'
+                      } else {
+                          this.status = 'offline'
+                      }
                   })
                   this.socket.on('water', data => {
                       data.water == false
                         ? this.water = 'false'
                         : this.water = 'true'
                   })
-        }
+                  this.socket.on('unit_disconnect', () => {
+                      this.socket.emit('get_length', {query: {
+                          pi_id: this.system.id
+                      }})
+                  })
+            }
               
     }
     

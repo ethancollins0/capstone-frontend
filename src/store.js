@@ -5,14 +5,25 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    BASE_URL: 'https://capstone-node-backend.herokuapp.com',
-    // BASE_URL: 'http://localhost:3002',
+    // BASE_URL: 'https://capstone-node-backend.herokuapp.com',
+    BASE_URL: 'http://localhost:3001',
     name: '_________',
-    piArray: []
+    systems: [],
+    form: {
+      selected: 'A+',
+      name: '',
+      description: ''
+    }
   },
   mutations: {
     setName(state, name){
       state.name = name
+    },
+    piForm(state, form){
+      state['form'][form.name] = form.value
+    },
+    setSystems(state, systems){
+      state.systems = systems
     }
   },
   actions: {

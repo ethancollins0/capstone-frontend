@@ -12,9 +12,11 @@
                     <div class='text-container'><h3>Needs Watering?</h3></div>
                     <div class='text-container'><h3>Token</h3></div>
                 </div>
-                <div class='system-container' v-for="system in systems" v-bind:key="system.id">
-                    <System :system="system" />
-                </div>
+                <transition-group name='list'>
+                    <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
+                        <System :system="system" />
+                    </div>
+                </transition-group>
             </div>
         </div>
     </div>
@@ -38,6 +40,7 @@
 <style lang="scss">
     .container {
         width: 60%;
+        border: 2px solid grey;
     }
 
     .system-title {
@@ -50,6 +53,22 @@
     }
 
     .systems {
+
+        .list-item {
+            padding-top: 0;
+        }
+
+        .list-enter-active, .list-leave-active {
+            transition: all 1s;
+        }
+
+        .list-enter, .list-leave-to {
+            opacity: 0;
+            transform: translateY(30px)
+        }
+
+        
+
         margin-top: 0;
         width: 100%;
         display: flex;
@@ -67,7 +86,6 @@
             justify-content: space-between;
             border-bottom: 0;
             background: lightgrey;
-            border: 1px solid grey;
             
             .text-container {
                 margin: 10px;

@@ -1,7 +1,7 @@
 <template>
     <div class='navbar'>
         <div class='logo'>
-            <img @click=handleClick src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
+            <img @click="removeToken" src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
             <h1>Welcome, {{this.name}} </h1>
@@ -24,6 +24,10 @@ export default {
     methods: {
         handleClick(event){
             this.$emit('opensocial', event.target.name)
+        },
+        removeToken(){
+            window.localStorage.removeItem('token')
+            window.location.replace('/login')
         }
     }
 }
@@ -39,9 +43,9 @@ export default {
         border-top: 1px solid black;
 
         .welcome {
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
+            position: absolute;
+            left: 45.5%;
+            top: 0;
         }
 
         .logo {

@@ -22,6 +22,7 @@
                 <input type="email" placeholder="Email" name='email' required/>
                 <input type="password" placeholder="Password" name='password' required/>
                 <button>Sign Up</button>
+                <h3 v-if="this.signup_failed">Email Already In Use</h3>
             </form>
             <form class='sign-in' @submit="handleSubmit">
                 <h2>Sign In</h2>
@@ -29,6 +30,8 @@
                 <input type="email" placeholder="Email" name='email' required/>
                 <input type="password" placeholder="Password" name='password' required/>
                 <button>Sign In</button>
+                <h3 v-if="this.signin_failed">Failed to Sign In</h3>
+                <img v-if="this.loading" src="@/assets/loading.gif"/>
             </form>
         </div>
     </article>
@@ -39,7 +42,10 @@
 export default {
         data: () => {
             return {
-                signUp: false
+                signUp: false,
+                signin_failed: false,
+                signup_failed: false,
+                loading: false,
             }
         },
         methods: {
@@ -54,7 +60,7 @@ export default {
                 }
             },
             handleLogin(email, password) {
-                console.log('inside handleLogin', email, password, this.$store.state.BASE_URL)
+                this.loading = 'true'
                 fetch(this.$store.state.BASE_URL + '/login', {
                     method: 'POST',
                     headers: {
@@ -68,9 +74,11 @@ export default {
                     console.log('response from login was' + `${res}`)
                     if (res){
                         window.localStorage.setItem('token', res)
+                        this.loading = false
                         this.login()
                     } else {
-                        console.log('failed to login')
+                        this.loading = false
+                        this.signin_failed = true
                     }
                 })
                 // window.localStorage.setItem('token', 'Bearer token')
@@ -90,7 +98,7 @@ export default {
                     if (res){  //on success
                         window.localStorage.setItem('token', res)
                     } else {  //on fail
-                        console.log('email exists or internal error')
+                        this.signup_failed = true
                     }
                 })
                 // window.localStorage.setItem('token', 'Bearer token')
@@ -254,9 +262,18 @@ export default {
 
         }
 
+        h3 {
+                color: 	#C50000;
+                margin: 0;
+            }
+
         .sign-in {
             left: 0;
             z-index: 2;
+
+            img {
+                height: 30px;
+            }
         }
 
         .sign-up {

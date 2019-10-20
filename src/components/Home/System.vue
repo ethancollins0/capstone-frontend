@@ -4,7 +4,7 @@
         <div class='text-container'><p>{{ system.model }}</p></div>
         <div class='text-container'><button>{{this.status}}</button></div>
         <div class='text-container'><button>{{this.water}}</button></div>
-        <div class='text-container'><button>{{this.token}}</button></div>
+        <div class='text-container'><button v-clipboard:copy="this.token">{{this.token}}</button></div>
     </div>
 </template>
 

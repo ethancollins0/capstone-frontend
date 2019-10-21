@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar v-on:opensocial="openSocial" />
     <div>
-      <Systems />
+      <Systems v-on:piredirect="piRedirect"/>
     </div>
   </div>
 </template>
@@ -26,6 +26,9 @@ export default {
         github: 'https://github.com/ethancollins0/capstone-frontend'
       }
       window.open(social[name], '_blank')
+    },
+    piRedirect(){
+      this.$router.push('/pi')
     }
   }
 }

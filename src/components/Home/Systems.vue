@@ -17,7 +17,7 @@
                         <System :system="system" />
                     </div>
                 </transition-group>
-                <div class='add-pi'><button><img src='@/assets/plus.png' /></button></div>
+                <div class='add-pi'><button><img @click="handleClick" src='@/assets/plus.png' /></button></div>
             </div>
         </div>
     </div>
@@ -35,6 +35,11 @@
                     return this.$store.state.systems
                 }
         },
+        methods: {
+            handleClick() {
+                this.$emit('piredirect')
+            }
+        }
 }
 </script>
 
@@ -48,18 +53,45 @@
             min-width: 400px;
 
             button {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                border-radius: 100%;
                 background-color: transparent;
                 min-height: 30px;
+                max-height: 55px;
                 max-width: 55px;
-                height: auto;
+                height: max-content;
                 margin-top: 10px;
                 margin-right: 0;
+                padding: 0;
                 border-style: none;
+            }
+            
+            button:focus {
+                cursor: default;
             }
 
             button img {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
                 min-height: 30px;
-                max-width: 55px;
+                width: 100%;
+                height: 100%;
+            }
+
+            button img:hover {
+                cursor: pointer;
+            }
+
+            button:focus {
+                outline: none;
+            }
+
+            button img:active {
+                box-sizing: border-box;
+                box-shadow: 0 3px 0 #00823F;
             }
         }
 

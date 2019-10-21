@@ -41,11 +41,11 @@ export default {
         height: 60px;
         border-bottom: 1px solid black;
         border-top: 1px solid black;
+        min-width: 400px;
 
         .welcome {
-            position: absolute;
-            left: 45.5%;
-            top: 0;
+            justify-self: center;
+            align-self: center;
         }
 
         .logo {

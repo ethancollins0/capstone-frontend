@@ -2,13 +2,13 @@
     <div class='system'>
         <div class='text-container'><p>{{ system.name }}</p></div>
         <div class='text-container'><p>{{ system.model }}</p></div>
-        <div class='text-container'><button>{{this.status}}</button></div>
-        <div class='text-container'><button>{{this.water}}</button></div>
+        <div class="text-container flat-button"><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
+        <div class='text-container flat-button'><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button></div>
         <div class='text-container'><button v-clipboard:copy="this.token">{{this.token}}</button></div>
     </div>
 </template>
 
-<script>
+<script>//
     import io from 'socket.io-client'
     export default {
         props: {
@@ -22,7 +22,9 @@
                 status: 'offline',
                 water: 'false',
                 token: '',
-                id: this.system.id
+                id: this.system.id,
+                online: false,
+                waterBool: false,
             }
         },
         created(){
@@ -43,28 +45,29 @@
                 body: JSON.stringify({ pi_id: this.id })
             }).then(res => res.json())
               .then(token => this.token = token)
-
-                  this.socket.on('data', data => {
-                      console.log(data)
-                  })
                   this.socket.on('online', () => {
                       this.status = 'online'
-                  })
-                  this.socket.on('works', () => {
-                      console.log('client connected')
                   })
                   this.socket.on('length', data => {
                       console.log(data)
                       if (data > 1){
                           this.status = 'online'
+                          this.online = true
                       } else {
                           this.status = 'offline'
+                          this.online = false
+                          this.water = 'false'
+                          this.waterBool = false
                       }
                   })
                   this.socket.on('water', data => {
-                      data.water == false
-                        ? this.water = 'false'
-                        : this.water = 'true'
+                      if (data.water){
+                          this.water = 'true'
+                          this.waterBool = true
+                      } else {
+                          this.water = 'false'
+                          this.waterBool = false
+                      }
                   })
                   this.socket.on('unit_disconnect', () => {
                       this.socket.emit('get_length', {query: {
@@ -79,6 +82,26 @@
 
 <style lang='scss'>
     .system {
+        .flat-button button {
+            border-style: outset;
+        }
+
+        .online {
+            background-color: #4BB543;
+        }
+
+        .offline {
+            background-color: #FF5733;
+        }
+
+        .water {
+            background-color: #FF5733;
+        }
+
+        .dontWater {
+            background-color: #4BB543;
+        }
+        
                 max-height: 70px;
                 background: white;
                 min-width: 400px;
@@ -113,10 +136,13 @@
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
+
+                        
+                    
                     }
 
                     button:focus {
-                        display: none;
+                        outline: none;
                     }
                 }
             }

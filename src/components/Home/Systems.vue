@@ -17,6 +17,7 @@
                         <System :system="system" />
                     </div>
                 </transition-group>
+                <div class='add-pi'><button><img src='@/assets/plus.png' /></button></div>
             </div>
         </div>
     </div>
@@ -40,7 +41,30 @@
 <style lang="scss">
     .container {
         width: 60%;
-        border: 2px solid grey;
+
+        .add-pi {
+            display: flex;
+            justify-content: flex-end;
+            min-width: 400px;
+
+            button {
+                background-color: transparent;
+                min-height: 30px;
+                max-width: 55px;
+                height: auto;
+                margin-top: 10px;
+                margin-right: 0;
+                border-style: none;
+            }
+
+            button img {
+                min-height: 30px;
+                max-width: 55px;
+            }
+        }
+
+
+
     }
 
     .system-title {
@@ -67,12 +91,14 @@
             transform: translateY(30px)
         }
 
-        
-
         margin-top: 0;
         width: 100%;
         display: flex;
         justify-content: center;
+
+        .system-container {
+            min-width: 400px;
+        }
 
         .system-container:last-child {
             border-bottom: 2px solid yellow;

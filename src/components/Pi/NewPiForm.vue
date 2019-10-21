@@ -3,11 +3,15 @@
         <form @submit="handleSubmit" class='pi-form'>
             <h2>Add a New Pi</h2>
             <input type='text' @change="handleChange" name='name' placeholder="name" maxlength='30' required/>
-            <textarea type='text' @change="handleChange" name='description' placeholder="short description" maxlength='80' required/>
-            <div class='form-bottom'>
+            <div class='model-dropdown'>
+                <span>
+                    <label for='selected' class='model-label'>Model: </label>
+                </span>
                 <select class='form-style' v-model='selected' @change="handleChange" name='selected'>
                     <option v-for="option in options" v-bind:key='option.id' :value="option.name"> {{ option.name }} </option>
                 </select>
+            </div>
+            <div class='form-bottom'>
                 <button class='form-style'>Create PI</button>
             </div>
         </form>
@@ -39,7 +43,7 @@
             }
         },
         mounted () {
-            this.selected = 'A+'
+            this.selected = 'Pi 4 B'
         }
     }
 </script>
@@ -51,7 +55,6 @@
         display: flex;
         justify-content: center;
         // align-content: center;
-        min-height: 300px;
 
         .pi-form {
             h2 {
@@ -60,6 +63,17 @@
                 padding-bottom: 10px;
                 width: 80%;
                 border-bottom: 1px solid black;
+            }
+            
+            .model-dropdown {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                select {
+                    width: 50%;
+                    margin-left: 20px;
+                    height: 40px;
+                }
             }
 
             background: linear-gradient(to bottom, #ebedee, #fdfbfb);

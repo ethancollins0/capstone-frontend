@@ -74,8 +74,10 @@
                           pi_id: this.system.id
                       }})
                   })
+            },
+            beforeDestroy(){
+                this.socket.close()
             }
-              
     }
     
 </script>
@@ -131,14 +133,12 @@
 
                     button {
                         width: 80%;
+                        min-width: 80%;
                         height: 60%;
                         border-radius: 8px;
                         white-space: nowrap;
                         overflow: hidden;
                         text-overflow: ellipsis;
-
-                        
-                    
                     }
 
                     button:focus {

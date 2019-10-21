@@ -6,11 +6,11 @@
         <div class='systems'>
             <div class='container'>
                 <div class='header-container'>
-                    <div class='text-container'><h3>Name</h3></div>
-                    <div class='text-container'><h3>Model</h3></div>
-                    <div class='text-container'><h3>Status</h3></div>
-                    <div class='text-container'><h3>Needs Watering?</h3></div>
-                    <div class='text-container'><h3>Token</h3></div>
+                    <div class='text-container'><h2>Name</h2></div>
+                    <div class='text-container'><h2>Model</h2></div>
+                    <div class='text-container'><h2>Status</h2></div>
+                    <div class='text-container'><h2>Needs Watering?</h2></div>
+                    <div class='text-container'><h2>Token</h2></div>
                 </div>
                 <transition-group name='list'>
                     <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
@@ -44,6 +44,8 @@
 </script>
 
 <style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+    
     .container {
         width: 60%;
 
@@ -109,6 +111,10 @@
     }
 
     .systems {
+
+        h2 {
+            font-family: 'Candara';
+        }
 
         .list-item {
             padding-top: 0;

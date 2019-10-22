@@ -14,7 +14,7 @@
             <div class='form-bottom'>
                 <button class='submit-button'>Create PI</button>
             </div>
-            <p>Test</p>
+            <strong><p class='create-fail' v-if="failed">Failed to Create Pi</p></strong>
         </form>
     </div>
 </template>
@@ -26,9 +26,15 @@
                 return this.$store.state.models
             }
         },
+        props: {
+            err: {
+                type: Boolean
+            }
+        },
         data () {
             return {
-                selected: ""
+                selected: "",
+                failed: false
             }
         },
         methods: {
@@ -45,6 +51,7 @@
         },
         mounted () {
             this.selected = 'Raspberry Pi 4 B'
+            this.failed = this.err
         }
     }
 </script>
@@ -56,6 +63,10 @@
         display: flex;
         justify-content: center;
         margin-right: 40px;
+
+        .create-fail {
+            color: rgb(255, 0, 0);;
+        }
 
         .pi-form {
             h2 {

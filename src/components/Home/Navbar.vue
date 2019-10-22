@@ -7,9 +7,10 @@
             <h1>Plant keeper aliverer</h1>
         </div>
         <div class='social'>
-                <img id='social-raspberry' @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
                 <img id='social-github' @click="handleClick" name='github' src='@/assets/github.png' alt='github logo' />
                 <img id='social-linkedin' @click="handleClick" name='linkedin' src='@/assets/linkedin.png' alt='linkedin logo' />
+                <img id='social-raspberry' @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
+                <img id='logout' src='@/assets/logout.png' @click="logout" />
         </div>
     </div>
 </template>
@@ -27,6 +28,10 @@ export default {
         },
         goHome(){
             this.$router.push('/home')
+        },
+        logout(){
+            window.localStorage.removeItem('token')
+            this.$router.push('/login')
         }
     }
 }
@@ -34,13 +39,18 @@ export default {
 
 <style lang="scss">
     .navbar {
-        background: #EEF4ED;
+        background: lightgrey;
         display: flex;
         justify-content: space-between;
         height: 60px;
         border-bottom: 1px solid black;
         border-top: 1px solid black;
         min-width: 300px;
+
+        #logout {
+            height: 55%;
+            margin-left: -5px;
+        }
 
         .welcome {
             justify-self: center;
@@ -65,12 +75,11 @@ export default {
         }
 
         .social {
-            max-width: 80px;
+            max-width: 155px;
             padding-right: 10px;
             display: flex;
             align-items: center;
             flex-direction: row;
-            margin-right: 30px;
         }
     }
 </style>

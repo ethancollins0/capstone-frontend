@@ -1,10 +1,10 @@
 <template>
     <div class='pi'>
       <Navbar v-on:opensocial="openSocial" />
-      <NewPiForm v-on:addpi="addPi" />
+      <NewPiForm :err="this.err" v-on:addpi="addPi" />
       <div class='image-container'>
         <div class='image' v-for="pi in pis" v-bind:key="pi.id">
-            <Details :pi="pi" />
+            <Details v-on:piredirect="piRedirect" :pi="pi" />
         </div>
       </div>
     </div>
@@ -20,6 +20,11 @@
             NewPiForm,
             Navbar,
             Details
+        },
+        data(){
+            return {
+                err: false
+            }
         },
         computed: {
             pis(){
@@ -40,8 +45,7 @@
                     })
                 }).then(res => res.json())
                 .then((res) => {
-                    console.log(res)
-                    typeof res == 'string' ? this.$router.history.push('/home') : console.log('failed')
+                    typeof res == 'string' ? this.$router.history.push('/home') : this.err = true
                 })
             },
             openSocial (name){
@@ -51,6 +55,10 @@
                     github: 'https://github.com/ethancollins0/capstone-frontend'
                 }
                 window.open(social[name], '_blank')
+            },
+            piRedirect(name){
+                let url = this.$store.state.piurls[name]
+                window.open(url, '_blank')
             }
         }
     }

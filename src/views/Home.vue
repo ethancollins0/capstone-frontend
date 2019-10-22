@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar v-on:opensocial="openSocial" />
     <div>
-      <Systems v-on:deletepi="deletePi" v-on:piredirect="piRedirect"/>
+      <Systems :failed="this.failed" v-on:deletepi="deletePi" v-on:piredirect="piRedirect"/>
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
   components: {
     Navbar,
     Systems
+  },
+  data(){
+    return {
+      failed: false
+    }
   },
   methods: {
     openSocial (name){
@@ -43,7 +48,7 @@ export default {
       .then(result => {
         result
           ? this.$store.commit('deletePi', pi_id)
-          : console.log('failed to delete')
+          : this.failed = true
       })
     }
   }
@@ -51,4 +56,7 @@ export default {
 </script>
 
 <style lang="scss">
+  .delete-fail {
+    color: #C50000;
+  }
 </style>

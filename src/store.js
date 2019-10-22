@@ -12,7 +12,6 @@ const store = new Vuex.Store({
     form: {
       selected: 'Raspberry Pi 4 B',
       name: '',
-      description: ''
     },
     models: [
       {id: 1, name: 'Raspberry Pi 4 B'},
@@ -26,15 +25,15 @@ const store = new Vuex.Store({
       {id: 9, name: 'Raspberry Pi Zero'},
     ],
     pis: [
-      {id: 1, name: '1 A+', source: '1A+'},
-      {id: 2, name: '1 B+', source: '1B+'},
-      {id: 3, name: '2 B', source: '2B'},
-      {id: 4, name: '3 A+', source: '3A+'},
-      {id: 5, name: '3 B', source: '3B'},
-      {id: 6, name: '3 B+', source: '3B+'},
-      {id: 7, name: '4 B', source: '4B'},
-      {id: 8, name: 'Zero', source: 'Zero'},
-      {id: 9, name: 'Zero W', source: 'ZeroW'},
+      {id: 1, name: '1 A+', source: '1A+', url: 'https://www.raspberrypi.org/products/raspberry-pi-1-model-a-plus/'},
+      {id: 2, name: '1 B+', source: '1B+', url: 'https://www.raspberrypi.org/products/raspberry-pi-1-model-b-plus/'},
+      {id: 3, name: '2 B', source: '2B', url: 'https://www.raspberrypi.org/products/raspberry-pi-2-model-b/'},
+      {id: 4, name: '3 A+', source: '3A+', url: 'https://www.raspberrypi.org/products/raspberry-pi-3-model-a-plus/'},
+      {id: 5, name: '3 B', source: '3B', url: 'https://www.raspberrypi.org/products/raspberry-pi-3-model-b/'},
+      {id: 6, name: '3 B+', source: '3B+', url: 'https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/'},
+      {id: 7, name: '4 B', source: '4B', url: 'https://www.raspberrypi.org/products/raspberry-pi-4-model-b/'},
+      {id: 8, name: 'Zero', source: 'Zero', url: 'https://www.raspberrypi.org/products/raspberry-pi-zero/'},
+      {id: 9, name: 'Zero W', source: 'ZeroW', url: 'https://www.raspberrypi.org/products/raspberry-pi-zero-w/'},
     ]
   },
   mutations: {

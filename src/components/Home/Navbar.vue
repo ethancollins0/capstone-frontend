@@ -1,7 +1,7 @@
 <template>
     <div class='navbar'>
         <div class='logo'>
-            <img @click="goHome" src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
+            <img @click="goHome" src='@/assets/logo.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
             <h1>Placeholder Proj Name</h1>

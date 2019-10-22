@@ -4,7 +4,7 @@
         <div class='text-container'><p>{{ system.model }}</p></div>
         <div class="text-container flat-button"><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
         <div class='text-container flat-button'><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button></div>
-        <div class='text-container'><button v-clipboard:copy="this.token">{{this.token}}</button></div>
+        <div class='text-container last-container'><button v-clipboard:copy="this.token">{{this.token}}</button><img @click="this.handleClick" src='@/assets/trash.png' /></div>
     </div>
 </template>
 
@@ -77,6 +77,11 @@
             },
             beforeDestroy(){
                 this.socket.close()
+            },
+            methods: {
+                handleClick(){
+                    this.$emit('deletepi', this.system.id)
+                }
             }
     }
     
@@ -120,6 +125,11 @@
                 text-align: left;
                 box-sizing: border-box;
 
+                .last-container {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
                 .text-container {
                     display: flex;
                     margin: 10px;
@@ -130,6 +140,15 @@
                     align-items: center;
                     min-height: 50px;
                     box-sizing: border-box;
+
+                    img {
+                        height: 50%;
+                        width: 12%;
+                    }
+
+                    img:hover {
+                        cursor: pointer;
+                    }
 
                     button {
                         width: 80%;

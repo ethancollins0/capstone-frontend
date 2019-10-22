@@ -5,25 +5,25 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    BASE_URL: 'https://capstone-node-backend.herokuapp.com',
-    // BASE_URL: 'http://localhost:3001',
+    // BASE_URL: 'https://capstone-node-backend.herokuapp.com',
+    BASE_URL: 'http://localhost:3001',
     name: '_________',
     systems: [],
     form: {
-      selected: 'Raspberry Pi 4 Model B',
+      selected: 'Raspberry Pi 4 B',
       name: '',
       description: ''
     },
     models: [
-      {id: 1, name: 'Pi 4 B'},
-      {id: 2, name: 'Pi 3 A+'},
-      {id: 3, name: 'Pi 3 B+'},
-      {id: 4, name: 'Pi 3 B'},
-      {id: 5, name: 'Pi 2 B'},
-      {id: 6, name: 'Pi 1 B+'},
-      {id: 7, name: 'Pi 1 A+'},
-      {id: 8, name: 'Pi Zero W'},
-      {id: 9, name: 'Pi Zero'},
+      {id: 1, name: 'Raspberry Pi 4 B'},
+      {id: 2, name: 'Raspberry Pi 3 A+'},
+      {id: 3, name: 'Raspberry Pi 3 B+'},
+      {id: 4, name: 'Raspberry Pi 3 B'},
+      {id: 5, name: 'Raspberry Pi 2 B'},
+      {id: 6, name: 'Raspberry Pi 1 B+'},
+      {id: 7, name: 'Raspberry Pi 1 A+'},
+      {id: 8, name: 'Raspberry Pi Zero W'},
+      {id: 9, name: 'Raspberry Pi Zero'},
     ],
     pis: [
       {id: 1, name: '1 A+', source: '1A+'},
@@ -46,6 +46,9 @@ const store = new Vuex.Store({
     },
     setSystems(state, systems){
       state.systems = systems
+    },
+    deletePi(state, id){
+      state.systems = state.systems.filter(system => system.id != id)
     }
   },
   actions: {

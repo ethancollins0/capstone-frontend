@@ -14,6 +14,7 @@
             <div class='form-bottom'>
                 <button class='submit-button'>Create PI</button>
             </div>
+            <p>Test</p>
         </form>
     </div>
 </template>
@@ -43,7 +44,7 @@
             }
         },
         mounted () {
-            this.selected = 'Pi 4 B'
+            this.selected = 'Raspberry Pi 4 B'
         }
     }
 </script>

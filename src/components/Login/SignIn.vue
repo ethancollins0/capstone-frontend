@@ -22,6 +22,8 @@
                 <input type="email" placeholder="Email" name='email' required/>
                 <input type="password" placeholder="Password" name='password' required/>
                 <button>Sign Up</button>
+                <img v-if="this.loading" src="@/assets/loading.gif"/>
+                <h3 class='success' v-if="this.signup_success">Account Created!</h3>
                 <h3 v-if="this.signup_failed">Email Already In Use</h3>
             </form>
             <form class='sign-in' @submit="handleSubmit">
@@ -46,6 +48,7 @@ export default {
                 signin_failed: false,
                 signup_failed: false,
                 loading: false,
+                signup_success: false,
             }
         },
         methods: {
@@ -60,6 +63,7 @@ export default {
                 }
             },
             handleLogin(email, password) {
+                this.signin_failed = false
                 this.loading = 'true'
                 fetch(this.$store.state.BASE_URL + '/login', {
                     method: 'POST',
@@ -85,6 +89,9 @@ export default {
                 // this.$router.push('/home')
             },
             handleSignup(name, email, password){
+                this.signup_failed = false
+                this.signup_success = false
+                this.loading = 'true'
                 fetch(this.$store.state.BASE_URL + '/signup', {
                     method: 'post',
                     headers: {
@@ -97,7 +104,10 @@ export default {
                 .then(res => {
                     if (res){  //on success
                         window.localStorage.setItem('token', res)
+                        this.loading = false
+                        this.signup_success = true
                     } else {  //on fail
+                        this.loading = false
                         this.signup_failed = true
                     }
                 })
@@ -116,6 +126,9 @@ export default {
 <style lang='scss'> 
 
     article {
+        .success {
+            color: green;
+        }
         position: fixed;
         top: 20%;
 
@@ -280,6 +293,10 @@ export default {
             left: 0;
             z-index: 1;
             opacity: 0;
+
+            img {
+                height: 30px;
+            }
         }
 
         .sign-up-active {

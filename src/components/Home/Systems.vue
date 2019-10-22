@@ -14,10 +14,10 @@
                 </div>
                 <transition-group name='list'>
                     <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
-                        <System :system="system" />
+                        <System v-on:deletepi="deletePi" :system="system" />
                     </div>
                 </transition-group>
-                <div class='add-pi'><button><img @click="handleClick" src='@/assets/plus.png' /></button></div>
+                    <div v-if="add_button" class='add-pi'><button><img @click="handleClick" src='@/assets/plus.png' /></button></div>
             </div>
         </div>
     </div>
@@ -35,10 +35,23 @@
                     return this.$store.state.systems
                 }
         },
+        data(){
+            return {
+                add_button: false
+            }
+        },
         methods: {
             handleClick() {
                 this.$emit('piredirect')
+            },
+            deletePi(id){
+                this.$emit('deletepi', id)
             }
+        },
+        mounted(){
+            setTimeout(() => {
+                this.add_button = true
+            }, 1000)
         }
 }
 </script>
@@ -144,12 +157,13 @@
 
         .header-container {
             min-width: 400px;
-            border: 1px solid #eee;
+            border: 1px solid yellow;
+            margin-bottom: 1px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             border-bottom: 0;
-            background: lightgrey;
+            background: white;
             
             .text-container {
                 margin: 10px;

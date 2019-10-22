@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar v-on:opensocial="openSocial" />
     <div>
-      <Systems v-on:piredirect="piRedirect"/>
+      <Systems v-on:deletepi="deletePi" v-on:piredirect="piRedirect"/>
     </div>
   </div>
 </template>
@@ -29,6 +29,22 @@ export default {
     },
     piRedirect(){
       this.$router.push('/pi')
+    },
+    deletePi(pi_id){
+      fetch(this.$store.state.BASE_URL + '/pi', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({ pi_id })
+      })
+      .then(res => res.json())
+      .then(result => {
+        result
+          ? this.$store.commit('deletePi', pi_id)
+          : console.log('failed to delete')
+      })
     }
   }
 }

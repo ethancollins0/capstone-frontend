@@ -1,10 +1,10 @@
 <template>
     <div class='navbar'>
         <div class='logo'>
-            <img @click="removeToken" src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
+            <img @click="goHome" src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Welcome, {{this.name}} </h1>
+            <h1>Placeholder Proj Name</h1>
         </div>
         <div class='social'>
                 <img @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
@@ -25,9 +25,8 @@ export default {
         handleClick(event){
             this.$emit('opensocial', event.target.name)
         },
-        removeToken(){
-            window.localStorage.removeItem('token')
-            window.location.replace('/login')
+        goHome(){
+            this.$router.push('/home')
         }
     }
 }
@@ -35,17 +34,17 @@ export default {
 
 <style lang="scss">
     .navbar {
-        background: #ffffff;
+        background: #e0e0e0;
         display: flex;
         justify-content: space-between;
         height: 60px;
         border-bottom: 1px solid black;
         border-top: 1px solid black;
+        min-width: 300px;
 
         .welcome {
-            position: absolute;
-            left: 45.5%;
-            top: 0;
+            justify-self: center;
+            align-self: center;
         }
 
         .logo {

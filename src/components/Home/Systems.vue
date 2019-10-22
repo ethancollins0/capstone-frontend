@@ -6,18 +6,18 @@
         <div class='systems'>
             <div class='container'>
                 <div class='header-container'>
-                    <div class='text-container'><h3>Name</h3></div>
-                    <div class='text-container'><h3>Model</h3></div>
-                    <div class='text-container'><h3>Status</h3></div>
-                    <div class='text-container'><h3>Needs Watering?</h3></div>
-                    <div class='text-container'><h3>Token</h3></div>
+                    <div class='text-container'><h2>Name</h2></div>
+                    <div class='text-container'><h2>Model</h2></div>
+                    <div class='text-container'><h2>Status</h2></div>
+                    <div class='text-container'><h2>Needs Watering?</h2></div>
+                    <div class='text-container'><h2>Token</h2></div>
                 </div>
                 <transition-group name='list'>
                     <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
                         <System :system="system" />
                     </div>
                 </transition-group>
-                <div class='add-pi'><button><img src='@/assets/plus.png' /></button></div>
+                <div class='add-pi'><button><img @click="handleClick" src='@/assets/plus.png' /></button></div>
             </div>
         </div>
     </div>
@@ -35,10 +35,17 @@
                     return this.$store.state.systems
                 }
         },
+        methods: {
+            handleClick() {
+                this.$emit('piredirect')
+            }
+        }
 }
 </script>
 
 <style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+    
     .container {
         width: 60%;
 
@@ -48,18 +55,45 @@
             min-width: 400px;
 
             button {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                border-radius: 100%;
                 background-color: transparent;
                 min-height: 30px;
+                max-height: 55px;
                 max-width: 55px;
-                height: auto;
+                height: max-content;
                 margin-top: 10px;
                 margin-right: 0;
+                padding: 0;
                 border-style: none;
+            }
+            
+            button:focus {
+                cursor: default;
             }
 
             button img {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
                 min-height: 30px;
-                max-width: 55px;
+                width: 100%;
+                height: 100%;
+            }
+
+            button img:hover {
+                cursor: pointer;
+            }
+
+            button:focus {
+                outline: none;
+            }
+
+            button img:active {
+                box-sizing: border-box;
+                box-shadow: 0 3px 0 #00823F;
             }
         }
 
@@ -77,6 +111,10 @@
     }
 
     .systems {
+
+        h2 {
+            font-family: 'Candara';
+        }
 
         .list-item {
             padding-top: 0;

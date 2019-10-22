@@ -4,15 +4,15 @@
             <h2>Add a New Pi</h2>
             <input type='text' @change="handleChange" name='name' placeholder="name" maxlength='30' required/>
             <div class='model-dropdown'>
-                <span>
-                    <label for='selected' class='model-label'>Model: </label>
+                <span class='model-label'>
+                    <label for='selected' class='model-label-text'><h3>Model:</h3></label>
                 </span>
-                <select class='form-style' v-model='selected' @change="handleChange" name='selected'>
+                <select v-model='selected' @change="handleChange" name='selected'>
                     <option v-for="option in options" v-bind:key='option.id' :value="option.name"> {{ option.name }} </option>
                 </select>
             </div>
             <div class='form-bottom'>
-                <button class='form-style'>Create PI</button>
+                <button class='submit-button'>Create PI</button>
             </div>
         </form>
     </div>
@@ -54,7 +54,7 @@
     .new-pi-form {
         display: flex;
         justify-content: center;
-        // align-content: center;
+        margin-right: 40px;
 
         .pi-form {
             h2 {
@@ -65,14 +65,33 @@
                 border-bottom: 1px solid black;
             }
             
+
             .model-dropdown {
                 width: 100%;
                 display: flex;
                 justify-content: center;
+                align-content: center;
+                height: 50px;
                 select {
-                    width: 50%;
+                    width: 42%;
+                    margin-top: 0;
                     margin-left: 20px;
-                    height: 40px;
+                    height: 80%;
+                }
+
+                .model-label {
+                    // background-color: #4BB543;
+                    height: 80%;
+                    display: flex;
+                    align-items: center;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                
+                    h3 {
+                        margin: 10px;
+                        
+                        margin-left: 0;
+                    }
                 }
             }
 
@@ -90,20 +109,6 @@
             box-sizing: border-box;
             padding: 5px;
             margin: 0;
-
-            textarea {
-                height: 50px;
-                width: 200px;
-                margin: 10px;
-                padding: 0;
-                padding-bottom: 0.4em;
-                padding-right: 0.4em;
-                resize: none;
-                font-size: 15px;
-                border: none;
-                border-radius: 5px;
-                border: 1px solid #eee;
-            }
 
             input {
                 height: 30px;
@@ -124,12 +129,15 @@
                 width: 100%;
                 display: flex;
                 flex-direction: row;
+                align-content: flex-end;
                 justify-content: space-evenly;
+                padding-top: 6%;
 
-                .form-style {
-                    width: 30%;
-                    height: 30px;
+                .submit-button{
+                    width: 40%;
+                    height: 40px;
                     background-color: #ffffff;
+                    margin-bottom: 0;
 
                     select {
                         display: none;

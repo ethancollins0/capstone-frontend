@@ -24,6 +24,17 @@ const store = new Vuex.Store({
       {id: 7, name: 'Pi 1 A+'},
       {id: 8, name: 'Pi Zero W'},
       {id: 9, name: 'Pi Zero'},
+    ],
+    pis: [
+      {id: 1, name: '1 A+', source: '1A+'},
+      {id: 2, name: '1 B+', source: '1B+'},
+      {id: 3, name: '2 B', source: '2B'},
+      {id: 4, name: '3 A+', source: '3A+'},
+      {id: 5, name: '3 B', source: '3B'},
+      {id: 6, name: '3 B+', source: '3B+'},
+      {id: 7, name: '4 B', source: '4B'},
+      {id: 8, name: 'Zero', source: 'Zero'},
+      {id: 9, name: 'Zero W', source: 'ZeroW'},
     ]
   },
   mutations: {

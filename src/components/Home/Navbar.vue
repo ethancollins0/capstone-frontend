@@ -4,7 +4,7 @@
             <img @click="goHome" src='@/assets/logo.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Placeholder Proj Name</h1>
+            <h1>Plant keeper aliverer</h1>
         </div>
         <div class='social'>
                 <img id='social-raspberry' @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss">
     .navbar {
-        background: #e0e0e0;
+        background: #EEF4ED;
         display: flex;
         justify-content: space-between;
         height: 60px;

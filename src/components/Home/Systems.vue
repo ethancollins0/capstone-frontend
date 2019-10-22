@@ -51,7 +51,7 @@
         mounted(){
             setTimeout(() => {
                 this.add_button = true
-            }, 1000)
+            }, 1200)
         }
 }
 </script>

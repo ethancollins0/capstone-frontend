@@ -29,9 +29,9 @@
             <form class='sign-in' @submit="handleSubmit">
                 <h2>Sign In</h2>
                 <div>Use Your Email To Sign In</div>
-                <input type="email" placeholder="Email" name='email' required/>
-                <input type="password" placeholder="Password" name='password' required/>
-                <button>Sign In</button>
+                <input id='signin-email' type="email" placeholder="Email" name='email' required/>
+                <input id='signin-password' type="password" placeholder="Password" name='password' required/>
+                <button id='signin-button'>Sign In</button>
                 <h3 v-if="this.signin_failed">Failed to Sign In</h3>
                 <img v-if="this.loading" src="@/assets/loading.gif"/>
             </form>

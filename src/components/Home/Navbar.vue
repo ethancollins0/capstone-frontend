@@ -4,12 +4,12 @@
             <img @click="goHome" src='@/assets/logo.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Placeholder Proj Name</h1>
+            <h1>Plant keeper aliverer</h1>
         </div>
         <div class='social'>
-                <img @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
-                <img @click="handleClick" name='github' src='@/assets/github.png' alt='github logo' />
-                <img @click="handleClick" name='linkedin' src='@/assets/linkedin.png' alt='linkedin logo' />
+                <img id='social-raspberry' @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
+                <img id='social-github' @click="handleClick" name='github' src='@/assets/github.png' alt='github logo' />
+                <img id='social-linkedin' @click="handleClick" name='linkedin' src='@/assets/linkedin.png' alt='linkedin logo' />
         </div>
     </div>
 </template>
@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss">
     .navbar {
-        background: #e0e0e0;
+        background: #EEF4ED;
         display: flex;
         justify-content: space-between;
         height: 60px;

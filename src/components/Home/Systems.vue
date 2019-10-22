@@ -1,8 +1,5 @@
 <template>
     <div>
-        <div class='system-title'>
-            <h1>Your Pi's</h1>
-        </div>
         <div class='systems'>
             <div class='container'>
                 <div class='header-container'>
@@ -51,7 +48,7 @@
         mounted(){
             setTimeout(() => {
                 this.add_button = true
-            }, 1000)
+            }, 1200)
         }
 }
 </script>
@@ -124,6 +121,11 @@
     }
 
     .systems {
+        padding-top: 5%;
+        
+        .system {
+            background-color: #f6f5f3;
+        }
 
         h2 {
             font-family: 'Candara';
@@ -163,7 +165,7 @@
             flex-direction: row;
             justify-content: space-between;
             border-bottom: 0;
-            background: white;
+            background: #8c92ac;
             
             .text-container {
                 margin: 10px;

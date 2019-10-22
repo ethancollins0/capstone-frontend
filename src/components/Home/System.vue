@@ -3,7 +3,7 @@
         <div class='text-container'><p>{{ system.name }}</p></div>
         <div class='text-container'><p>{{ system.model }}</p></div>
         <div class="text-container flat-button"><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
-        <div class='text-container flat-button'><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button></div>
+        <div class='text-container flat-button'><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button><img v-if="waterBool" src="@/assets/loading.gif" /></div>
         <div class='text-container last-container'><button v-clipboard:copy="this.token">{{this.token}}</button><img @click="this.handleClick" src='@/assets/trash.png' /></div>
     </div>
 </template>

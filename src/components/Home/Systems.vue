@@ -1,5 +1,4 @@
 <template>
-    <div>
         <div class='systems'>
             <div class='error-container'>
                 <h3 id='failed-delete' v-if="delete_failed">Failed to Delete Pi</h3>
@@ -22,7 +21,6 @@
                     </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -79,6 +77,9 @@
 
         border-radius: 5px;
 
+        .text-container {
+            overflow: hidden;
+        }
 
         .add-pi {
             display: flex;
@@ -213,6 +214,18 @@
                 box-sizing: border-box;
             }
             
+        }
+    }
+
+    @media screen and (max-width: 480){
+        .container {
+            width: 400px;
+        }
+    }
+    
+    @media screen and (max-width: 600){
+        .container {
+            width: 500px;
         }
     }
 </style>

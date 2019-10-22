@@ -156,6 +156,10 @@
                     }
                 }
 
+                .submit-button:hover {
+                    cursor: pointer;
+                }
+
             }
 
 

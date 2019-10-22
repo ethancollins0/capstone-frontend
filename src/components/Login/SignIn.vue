@@ -139,7 +139,6 @@ export default {
             font-weight: 100;
 
             position: relative;
-            width: 768px;
             height: 480px;
             border-radius: 10px;
             overflow: hidden;
@@ -342,6 +341,50 @@ export default {
             50% {
                 opactiy: 1;
                 z-index: 10;
+            }
+        }
+    }
+    
+    @media screen {
+        .container {
+            width: 900px;
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+        .container {
+            width: 800px;
+        }
+    }
+
+    @media screen and (max-width: 900px){
+        .container {
+            width: 800px
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .container {
+            width: 700px;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            width: 550px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .container {
+            width: 450px;
+        }
+    }
+    @media screen and (max-width: 450px){
+        .container {
+            width: 400px;
+            input {
+                width: 80%;
             }
         }
     }

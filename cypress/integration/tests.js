@@ -1,5 +1,5 @@
 function login(){
-    cy.visit('http://localhost:8080/login')
+    cy.visit('https://capstone-frontend.firebaseapp.com/home')
     cy.get('#signin-email').type('bill@gmail.com')
     cy.get('#signin-password').type('password')
     cy.get('#signin-button').click()
@@ -38,4 +38,10 @@ it('Can delete a pi', () => {
     login()
     cy.get('.system > .text-container > img').last().click()
     expect(cy.contains('Pi created by cypress')).to.not.equal(true)
+})
+
+it('Can logout', () => {
+    login()
+    cy.get('#logout').click()
+    cy.url().should('include', '/login')
 })

@@ -4,7 +4,7 @@
             <img @click="goHome" src='@/assets/github.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Welcome, {{this.name}} </h1>
+            <h1>Placeholder Proj Name</h1>
         </div>
         <div class='social'>
                 <img @click="handleClick" name='raspberrypi' src=@/assets/raspberrypi.png alt='raspberrypi logo' />
@@ -40,7 +40,7 @@ export default {
         height: 60px;
         border-bottom: 1px solid black;
         border-top: 1px solid black;
-        min-width: 400px;
+        min-width: 300px;
 
         .welcome {
             justify-self: center;

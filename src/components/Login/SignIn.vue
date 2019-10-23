@@ -359,13 +359,13 @@ export default {
 
     @media screen and (max-width: 900px){
         .container {
-            width: 800px
+            width: 750px
         }
     }
 
     @media screen and (max-width: 800px) {
         .container {
-            width: 700px;
+            width: 550px;
         }
     }
 
@@ -377,14 +377,34 @@ export default {
 
     @media screen and (max-width: 500px) {
         .container {
-            width: 450px;
+            width: 390px;
         }
     }
-    @media screen and (max-width: 450px){
+    @media screen and (max-width: 400px){
         .container {
-            width: 400px;
-            input {
-                width: 80%;
+            width: 320px;
+            .sign-in {
+                h2 {
+                    width: max-content;
+                }
+                input {
+                    width: 200%;;
+                }
+                div {
+                    width: 80px;
+                }
+            }
+
+            .sign-up {
+                h2 {
+                    width: max-content;
+                }
+                input {
+                    width: 200%;;
+                }
+                div {
+                    width: 80px;
+                }
             }
         }
     }

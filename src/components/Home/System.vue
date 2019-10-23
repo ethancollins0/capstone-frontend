@@ -140,7 +140,6 @@
         .delete-icon {
             height: 70%;
             max-height: 40px;
-            padding-bottom: 20px;
         }
 
 
@@ -233,6 +232,12 @@
     @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
         .system {
             width: 320px;
+        }
+    }
+
+    @media screen and (max-device-width: 320) {
+        .system {
+            width: 300px;
         }
     }
 </style>

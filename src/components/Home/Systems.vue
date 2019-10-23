@@ -227,4 +227,10 @@
             max-width: 320px;
         }
     }
+
+    @media screen and (max-device-width: 320px) {
+        .systems {
+            width: 280px;
+        }
+    }
 </style>

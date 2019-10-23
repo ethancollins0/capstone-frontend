@@ -4,7 +4,7 @@
             <img @click="goHome" src='@/assets/logo.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Plant keeper aliverer</h1>
+            <h1>Water.Pi</h1>
         </div>
         <div class='social'>
                 <img id='social-github' @click="handleClick" name='github' src='@/assets/github.png' alt='github logo' />
@@ -67,7 +67,7 @@ export default {
 
         img {
                 height: 60%;
-                margin-right: 5px;
+                margin-right: 4px;
             }
 
         img:hover {
@@ -75,11 +75,37 @@ export default {
         }
 
         .social {
-            max-width: 155px;
+            width: 160px;
             padding-right: 10px;
             display: flex;
             align-items: center;
             flex-direction: row;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+         .navbar {
+             width: 300px;
+             img {
+                 max-height: 30px;
+             }
+         }
+
+         .social {
+             display: flex;
+             justify-content: flex-end;
+             img {
+                 height: 45%;
+             }
+         }
+    }
+
+
+    @media screen and (max-width: 550) {
+        .navbar {
+            .welcome {
+               margin-left: 50px;
+            }
         }
     }
 </style>

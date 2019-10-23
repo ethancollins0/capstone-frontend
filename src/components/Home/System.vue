@@ -1,10 +1,18 @@
 <template>
     <div class='system'>
-        <div class='text-container'><p>{{ system.name }}</p></div>
-        <div class='text-container'><p>{{ system.model }}</p></div>
-        <div class="text-container flat-button"><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
-        <div class='text-container flat-button'><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button><img v-if="waterBool" src="@/assets/loading.gif" /></div>
-        <div class='text-container last-container'><button v-clipboard:copy="this.token">{{this.token}}</button><img @click="this.handleClick" src='@/assets/trash.png' /></div>
+        <div class='text-container'>
+            <h2>{{ system.name }}</h2>
+            <img class='delete-icon' @click="this.handleClick" src='@/assets/trash.png' />
+        </div>
+        <div class='model-info'>
+            <div class='text-container pi-image'><h2>{{ system.model }}</h2><img :alt="system.name" :src="require('@/assets/' + this.source + '.jpg')" /></div>
+        </div>
+        <div class="text-container flat-button"><h2>Status: </h2><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
+        <div class='text-container flat-button'><h2>Needs Water: </h2><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button></div>
+        <div class='text-container last-container'><h2>Token: </h2><button v-clipboard:copy="this.token" class='token-button'>{{this.token}}</button></div>
+        <div class='watering'>
+            <div class='text-container watering-image' v-if="waterBool"><h2>Watering...</h2><img src='@/assets/loading.gif' /></div>
+        </div>
     </div>
 </template>
 
@@ -24,7 +32,11 @@
                 token: '',
                 id: this.system.id,
                 online: false,
-                waterBool: false,
+                waterBool: true,
+                pis: this.$store.state.pis,
+                models: this.$store.state.models,
+                source: '',
+                copied: false
             }
         },
         created(){
@@ -74,6 +86,12 @@
                           pi_id: this.system.id
                       }})
                   })
+                let system = this.models.find(model => (model.name == this.system.model))
+                let id = 1
+                system && typeof system != 'number'
+                    ? id = system.id
+                    : id = 1
+                this.source = this.pis.find(pi => pi.id == id).source   
             },
             beforeDestroy(){
                 this.socket.close()
@@ -81,14 +99,72 @@
             methods: {
                 handleClick(){
                     this.$emit('deletepi', this.system.id)
-                }
+                },
             }
     }
     
 </script>
 
 <style lang='scss'>
+
+    .watering-image {
+        img{
+            height: 80%;
+        }
+    }
+
     .system {
+        margin: 10px;
+        padding: 20px;
+                background: white;
+                min-height: 50px;
+                width: 400px;
+                height: max-content;
+                // border: 1px solid red;
+                border-bottom: 1px solid grey;
+                border-radius: 5px;
+                
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // align-content: space-between;
+                text-align: left;
+                box-sizing: border-box;
+
+                .watering-image {
+                    height: 30px;
+                    display: flex;
+                    align-self: center;
+                }
+
+        .delete-icon {
+            height: 70%;
+            max-height: 40px;
+        }
+
+
+        .model-info {
+            border-radius: 5px;
+            img {
+                border-radius: 5px;
+            }
+        }
+
+        .pi-image {
+            img {
+                max-height: 100px;
+                min-height: 70px; 
+                max-width: 50%;
+                box-sizing: border-box;
+            }
+        }
+
+
+        .text-container:first {
+            display: flex;
+            justify-content: center;
+        }
+
         .flat-button button {
             border-style: outset;
         }
@@ -109,21 +185,7 @@
             background-color: #4BB543;
         }
         
-                max-height: 70px;
-                background: white;
-                min-width: 400px;
-                min-height: 50px;
-                width: 100%;
-                height: max-content;
-                // border: 1px solid red;
-                border-bottom: 1px solid grey;
-                
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-content: center;
-                text-align: left;
-                box-sizing: border-box;
+               
 
                 .last-container {
                     display: flex;
@@ -132,18 +194,17 @@
 
                 .text-container {
                     display: flex;
-                    margin: 10px;
-                    width: 20%;
+                    width: 100%;
                     text-align: left;
                     // border: 1px solid black;
-                    height: 50px;
+                    max-height: 100px;
+                    justify-content: space-between;
                     align-items: center;
                     min-height: 50px;
                     box-sizing: border-box;
 
-                    img {
-                        height: 50%;
-                        width: 12%;
+                    .token-button:hover {
+                        cursor: pointer;
                     }
 
                     img:hover {
@@ -151,9 +212,11 @@
                     }
 
                     button {
-                        width: 80%;
-                        min-width: 80%;
-                        height: 60%;
+                        width: 50%;
+                        box-sizing: border-box;
+                        // min-width: 80%;
+                        height: 80%;
+                        min-height: 30px;
                         border-radius: 8px;
                         white-space: nowrap;
                         overflow: hidden;
@@ -165,4 +228,16 @@
                     }
                 }
             }
+
+    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        .system {
+            width: 320px;
+        }
+    }
+
+    @media screen and (max-device-width: 320) {
+        .system {
+            width: 300px;
+        }
+    }
 </style>

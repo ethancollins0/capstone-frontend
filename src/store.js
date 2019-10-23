@@ -14,15 +14,15 @@ const store = new Vuex.Store({
       name: '',
     },
     models: [
-      {id: 1, name: 'Raspberry Pi 4 B'},
-      {id: 2, name: 'Raspberry Pi 3 A+'},
-      {id: 3, name: 'Raspberry Pi 3 B+'},
-      {id: 4, name: 'Raspberry Pi 3 B'},
-      {id: 5, name: 'Raspberry Pi 2 B'},
-      {id: 6, name: 'Raspberry Pi 1 B+'},
-      {id: 7, name: 'Raspberry Pi 1 A+'},
-      {id: 8, name: 'Raspberry Pi Zero W'},
-      {id: 9, name: 'Raspberry Pi Zero'},
+      {id: 1, name: 'Raspberry Pi 1 A+'},
+      {id: 2, name: 'Raspberry Pi 1 B+'},
+      {id: 3, name: 'Raspberry Pi 2 B'},
+      {id: 4, name: 'Raspberry Pi 3 A+'},
+      {id: 5, name: 'Raspberry Pi 3 B'},
+      {id: 6, name: 'Raspberry Pi 3 B+'},
+      {id: 7, name: 'Raspberry Pi 4 B'},
+      {id: 8, name: 'Raspberry Pi Zero'},
+      {id: 9, name: 'Raspberry Pi Zero W'},
     ],
     pis: [
       {id: 1, name: '1 A+', source: '1A+', url: 'https://www.raspberrypi.org/products/raspberry-pi-1-model-a-plus/'},
@@ -51,7 +51,6 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-
   }
 })
 

@@ -3,23 +3,14 @@
             <div class='error-container'>
                 <h3 id='failed-delete' v-if="delete_failed">Failed to Delete Pi</h3>
             </div>
-            <div class='container'>
-                <div class='header-container'>
-                    <div class='text-container'><h3>Name</h3></div>
-                    <div class='text-container'><h3>Model</h3></div>
-                    <div class='text-container'><h3>Status</h3></div>
-                    <div class='text-container'><h3>Needs Watering?</h3></div>
-                    <div class='text-container'><h3>Token</h3></div>
-                </div>
-                <transition-group name='list'>
-                    <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
-                        <System v-on:deletepi="deletePi" :system="system" />
-                    </div>
-                </transition-group>
+                    <transition-group name='list' class='flex-container'>
+                        <div class='system-container list-item' v-for="system in systems" v-bind:key="system.id">
+                            <System v-on:deletepi="deletePi" :system="system" />
+                        </div>
+                    </transition-group>
                     <div v-if="add_button" class='add-pi'>
                         <button><img @click="handleClick" src='@/assets/plus.png' /></button>
                     </div>
-            </div>
         </div>
 </template>
 
@@ -69,22 +60,14 @@
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
     
-    .container {
+    .systems {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 60%;
-
-        border-radius: 5px;
-
-        .text-container {
-            overflow: hidden;
-        }
 
         .add-pi {
             display: flex;
-            justify-content: flex-end;
-            min-width: 400px;
+            justify-content: center;
+            width: 100%;
 
             button {
                 display: flex;
@@ -111,6 +94,7 @@
                 padding: 0;
                 box-sizing: border-box;
                 min-height: 30px;
+                max-height: 50px;
                 width: 100%;
                 height: 100%;
             }
@@ -128,9 +112,25 @@
                 box-shadow: 0 3px 0 #00823F;
             }
         }
+    }
 
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        flex-wrap: wrap;
 
+        border-radius: 5px;
 
+        .text-container {
+            overflow: hidden;
+        }
+
+        .system-container {
+            display: flex;
+            flex-direction: row;
+        }
     }
 
     .system-title {
@@ -144,6 +144,7 @@
 
     .systems {
         
+
         .error-container {
             border-radius: 5px;
 
@@ -157,6 +158,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
         
         .system {
             background-color: #f6f5f3;
@@ -164,15 +166,19 @@
 
         .list-item {
             padding-top: 0;
+            width: max-content;
         }
 
         .list-enter-active, .list-leave-active {
             transition: all 1s;
+            width: max-content;
         }
 
         .list-enter, .list-leave-to {
             opacity: 0;
-            transform: translateY(30px)
+            transform: translateY(30px);
+            width: max-content;
+
         }
 
         margin-top: 0;
@@ -180,17 +186,13 @@
         display: flex;
         justify-content: center;
 
-        .system-container {
-            min-width: 400px;
-        }
-
         .system-container:last-child {
             border-bottom: 0;
-            box-shadow: 2px 2px 5px black;
+            // box-shadow: 2px 2px 5px black;
         }
 
         .header-container {
-            min-width: 400px;
+            min-width: 300px;
             margin-bottom: 1px;
             display: flex;
             flex-direction: row;
@@ -207,7 +209,7 @@
                 }
 
                 margin: 10px;
-                width: 33%;
+                // width: 33%;
                 text-align: left;
                 // border: 1px solid black;
                 height: max-content;
@@ -217,15 +219,12 @@
         }
     }
 
-    @media screen and (max-width: 480){
-        .container {
-            width: 400px;
+    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        .systems {
+            width: 320px;
         }
-    }
-    
-    @media screen and (max-width: 600){
-        .container {
-            width: 500px;
+        .system-container {
+            max-width: 320px;
         }
     }
 </style>

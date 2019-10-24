@@ -24,7 +24,7 @@ Water.pi is a web app I made in 3 weeks at Flatiron School. The app allows a use
 - Vue-socket.io
 
 ## Features
-Uses encryption and jwt to secure user login and requests. Once logged in, a user can see their added pi's and see the status of each.
+Uses JWT to track whether a user is logged in. Once logged in, a user can see their added pi's and see the status of each.
 
 ![home](https://github.com/ethancollins0/capstone-backend/blob/master/GitFiles/Home.png)
 

@@ -46,11 +46,13 @@
             },
             handleSubmit (e) {
                 e.preventDefault()
+                console.log(this.$store.state.form)
                 this.$emit('addpi')
             }
         },
         mounted () {
             this.selected = 'Raspberry Pi 4 B'
+            this.$store.commit('resetSelected')
             this.failed = this.err
         }
     }

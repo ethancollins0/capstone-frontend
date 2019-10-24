@@ -48,6 +48,9 @@ const store = new Vuex.Store({
     },
     deletePi(state, id){
       state.systems = state.systems.filter(system => system.id != id)
+    },
+    resetSelected(state){
+      state.form.selected = 'Raspberry Pi 4 B'
     }
   },
   actions: {

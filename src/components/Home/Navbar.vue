@@ -4,7 +4,7 @@
             <img @click="goHome" src='@/assets/logo.png' alt='github logo' /> <!-- TEMP SRC, CHANGE -->
         </div>
         <div class='welcome'>
-            <h1>Water.Pi</h1>
+            <h1>Water.pi</h1>
         </div>
         <div class='social'>
                 <img id='social-github' @click="handleClick" name='github' src='@/assets/github.png' alt='github logo' />

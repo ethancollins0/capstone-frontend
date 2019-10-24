@@ -10,18 +10,18 @@ Water.pi is a web app I made in 3 weeks at Flatiron School. The app allows a use
 - Express
 - Socket.io
 - PostgreSQL
- 
-##### [Frontend](https://github.com/ethancollins0/capstone-frontend)
-- Vue.js
-- Vuex
-- Vue-router
-- Vue-socket.io
 
 ##### [Raspberry Pi](https://github.com/ethancollins0/raspberry-pi-api)
 - Python
 - Node.js
 - Express
 - Socket.io
+
+##### [Frontend](https://github.com/ethancollins0/capstone-frontend)
+- Vue.js
+- Vuex
+- Vue-router
+- Vue-socket.io
 
 ## Features
 Uses encryption and jwt to secure user login and requests. Once logged in, a user can see their added pi's and see the status of each.

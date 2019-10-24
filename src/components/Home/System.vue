@@ -5,7 +5,7 @@
             <img class='delete-icon' @click="this.handleClick" src='@/assets/trash.png' />
         </div>
         <div class='model-info'>
-            <div class='text-container pi-image'><h2>{{ system.model }}</h2><img :alt="system.name" :src="require('@/assets/' + this.source + '.jpg')" /></div>
+            <div class='text-container pi-image'><h2>{{ system.model }}</h2><img @click="handleLink" :alt="system.name" :src="require('@/assets/' + this.source + '.jpg')" /></div>
         </div>
         <div class="text-container flat-button"><h2>Status: </h2><button v-bind:class="{ online: this.online, offline: !this.online}">{{this.status}}</button></div>
         <div class='text-container flat-button'><h2>Needs Water: </h2><button v-bind:class="{ water: this.waterBool, dontWater: !this.waterBool }">{{this.water}}</button></div>
@@ -36,7 +36,7 @@
                 pis: this.$store.state.pis,
                 models: this.$store.state.models,
                 source: '',
-                copied: false
+                link: '',
             }
         },
         created(){
@@ -92,6 +92,7 @@
                     ? id = system.id
                     : id = 1
                 this.source = this.pis.find(pi => pi.id == id).source   
+                this.link = this.pis.find(pi => pi.id == id).url
             },
             beforeDestroy(){
                 this.socket.close()
@@ -100,12 +101,20 @@
                 handleClick(){
                     this.$emit('deletepi', this.system.id)
                 },
+                handleLink(){
+                    window.open(this.link, '_blank')
+                }
             }
     }
     
 </script>
 
 <style lang='scss'>
+    .system-container {
+        box-shadow: 5px 5px 5px black;
+        width: max-content;
+        font-family: 'Playfair Display', serif;
+    }
 
     .watering-image {
         img{
@@ -114,7 +123,6 @@
     }
 
     .system {
-        margin: 10px;
         padding: 20px;
                 background: white;
                 min-height: 50px;
@@ -229,13 +237,13 @@
                 }
             }
 
-    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    @media screen and (min-device-width: 341px) and (max-device-width: 480px) {
         .system {
             width: 320px;
         }
     }
 
-    @media screen and (max-device-width: 320) {
+    @media screen and (max-device-width: 340px) {
         .system {
             width: 300px;
         }

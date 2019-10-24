@@ -53,8 +53,11 @@ export default {
         }
 
         .welcome {
-            justify-self: center;
+            display: flex;
+            // justify-self: center;
             align-self: center;
+            padding-left: 105px;
+
         }
 
         .logo {
@@ -83,7 +86,15 @@ export default {
         }
     }
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 450px) {
+        .navbar {
+            .welcome {
+                padding-left: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 350px) {
          .navbar {
              width: 300px;
              img {

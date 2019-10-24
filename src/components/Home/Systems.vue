@@ -1,5 +1,6 @@
 <template>
         <div class='systems'>
+            <div class='title'><h1>Hello, {{this.$store.state.name}}</h1></div>
             <div class='error-container'>
                 <h3 id='failed-delete' v-if="delete_failed">Failed to Delete Pi</h3>
             </div>
@@ -63,6 +64,25 @@
     .systems {
         width: 100%;
         display: flex;
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            h1 {
+                display: flex;
+                justify-content: center;
+                width: 20%;
+                min-width: 300px;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 2rem;
+                border-bottom: 1px solid black;
+                margin-top: -20px;
+                color: white;
+            }
+        }
 
         .add-pi {
             display: flex;

@@ -110,7 +110,6 @@
 
 <style lang='scss'>
     .system-container {
-        box-shadow: 5px 5px 5px black;
         width: max-content;
         font-family: 'Playfair Display', serif;
     }
@@ -123,6 +122,7 @@
 
     .system {
         padding: 20px;
+                box-shadow: 5px 5px 5px black;
                 background: white;
                 min-height: 50px;
                 width: 400px;

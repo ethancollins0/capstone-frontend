@@ -151,6 +151,7 @@
         .system-container {
             display: flex;
             flex-direction: row;
+            margin-bottom: 20px;
         }
     }
 

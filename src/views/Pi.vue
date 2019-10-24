@@ -45,7 +45,7 @@
                     })
                 }).then(res => res.json())
                 .then((res) => {
-                    typeof res == 'string' ? this.$router.history.push('/home') : this.err = true
+                    typeof res == 'string' ? this.$router.history.push('/home', () => {}) : this.err = true
                 })
             },
             openSocial (name){

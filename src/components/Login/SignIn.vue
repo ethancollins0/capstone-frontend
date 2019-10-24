@@ -75,7 +75,6 @@ export default {
                     })
                 }).then(res => res.json())
                 .then(res => {
-                    console.log('response from login was' + `${res}`)
                     if (res){
                         window.localStorage.setItem('token', res)
                         this.loading = false
@@ -115,8 +114,7 @@ export default {
                 // this.$router.push('/home')
             },
             login(){
-                console.log('reached the login redirect')
-                this.$router.push('home')
+                this.$router.push('home', () => {})
             }
         }
     }

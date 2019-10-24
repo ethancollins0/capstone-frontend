@@ -35,7 +35,7 @@
                 waterBool: true,
                 pis: this.$store.state.pis,
                 models: this.$store.state.models,
-                source: '',
+                source: '3A+',
                 link: '',
             }
         },
@@ -61,7 +61,6 @@
                       this.status = 'online'
                   })
                   this.socket.on('length', data => {
-                      console.log(data)
                       if (data > 1){
                           this.status = 'online'
                           this.online = true

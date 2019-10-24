@@ -33,7 +33,7 @@ export default {
       window.open(social[name], '_blank')
     },
     piRedirect(){
-      this.$router.push('/pi')
+      this.$router.push('/pi', () => {})
     },
     deletePi(pi_id){
       fetch(this.$store.state.BASE_URL + '/pi', {

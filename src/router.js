@@ -29,7 +29,15 @@ function validateToken(){
   })
 }
 
+function setTitle(to, from, next){
+  if (document.title != to.meta.title){
+    document.title = to. meta.title
+  }
+  next()
+}
+
 function guard(to, from, next){
+  setTitle(to, from, next)
   if (to.path == '/home' || to.path == '/pi'){
     guardHome(to, from, next)
   } else if (to.path == '/login'){
@@ -38,6 +46,7 @@ function guard(to, from, next){
 }
 
 function guardHome(to, from, next){
+  setTitle(to, from, next)
   if (window.localStorage.getItem('token')){
     validateToken()
       .then(res => {
@@ -52,6 +61,7 @@ function guardHome(to, from, next){
 }
 
 function guardLogin(to, from, next){
+  setTitle(to, from, next)
   if (window.localStorage.getItem('token')){
     validateToken()
       .then(res => {
@@ -70,19 +80,23 @@ export default new Router({
       beforeEnter: guard,
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: {title: 'Login'}
     },
     {
       beforeEnter: guard,
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      title: 'Home',
+      meta: {title: 'Home'}
     },
     {
       beforeEnter: guard,
       path: '/pi',
       name: 'pi',
-      component: Pi
+      component: Pi,
+      meta: {title: 'Pi'}
     },
     {
       path: '*', 

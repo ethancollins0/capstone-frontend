@@ -27,11 +27,11 @@ export default {
             this.$emit('opensocial', event.target.name)
         },
         goHome(){
-            this.$router.push('/home')
+            this.$router.push('/home', () => {})
         },
         logout(){
             window.localStorage.removeItem('token')
-            this.$router.push('/login')
+            this.$router.push('/login', () => {})
         }
     }
 }
@@ -79,10 +79,12 @@ export default {
 
         .social {
             width: 160px;
-            padding-right: 10px;
+            margin-right: 10px;
             display: flex;
             align-items: center;
+            display: flex;
             flex-direction: row;
+            justify-content: space-evenly;
         }
     }
 

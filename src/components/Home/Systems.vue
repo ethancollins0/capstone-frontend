@@ -81,6 +81,7 @@
                 border-bottom: 1px solid black;
                 margin-top: -20px;
                 color: white;
+                padding-bottom: 7px;
             }
         }
 

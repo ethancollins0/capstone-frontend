@@ -37,7 +37,7 @@ User can delete Pi's
 ![deleting](https://github.com/ethancollins0/capstone-backend/blob/master/GitFiles/Deleting.gif)
 
 
-User can see live whether their pi is online and watering a plant.
+User can see whether their pi is online and watering a plant in realtime.
 
 ![watering](https://github.com/ethancollins0/capstone-backend/blob/master/GitFiles/Watering.gif)
 

@@ -14,7 +14,6 @@ Water.pi is a web app I made in 3 weeks at Flatiron School. The app allows a use
 ##### [Raspberry Pi](https://github.com/ethancollins0/raspberry-pi-api)
 - Python
 - Node.js
-- Express
 - Socket.io-client
 
 ##### [Frontend](https://github.com/ethancollins0/capstone-frontend)

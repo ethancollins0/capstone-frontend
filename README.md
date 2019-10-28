@@ -15,7 +15,7 @@ Water.pi is a web app I made in 3 weeks at Flatiron School. The app allows a use
 - Python
 - Node.js
 - Express
-- Socket.io
+- Socket.io-client
 
 ##### [Frontend](https://github.com/ethancollins0/capstone-frontend)
 - Vue.js
